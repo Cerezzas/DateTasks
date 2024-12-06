@@ -7,18 +7,31 @@ public class TaskFive {
 
 //        Task 5: növbəti ayın bu günü hansı həftənin günüdür
 
+        
         LocalDate today = LocalDate.now();
-        String dayOfTheWeek = today.getDayOfWeek().toString();
-        System.out.println("Todays date: " + today );
-        System.out.println("day of the week of this date in the current month: " + dayOfTheWeek);
 
-        LocalDate nextMonth = today.plusMonths(1);
-        System.out.println("Same date but next month: " + nextMonth);
+        DateTimeFormatter formatterAll = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatterDay = DateTimeFormatter.ofPattern("d");
+        System.out.println("Today is: "+today.format(formatterAll));
+        System.out.println("It is: " + today.getDayOfWeek());
+        int day = Integer.parseInt(today.format(formatterDay));
+//        System.out.println("Day of the month: "+today.format(formatterDay));
 
-        System.out.println();
+        Month month = Month.of(today.getMonthValue());
+//        System.out.println("Month of today: "+month);
 
-        String nextMonthDayOfTheWeek = nextMonth.getDayOfWeek().toString();
-        System.out.println("day of the week of this date in the next month: " + nextMonthDayOfTheWeek);
+
+        Year year = Year.of(today.getYear());
+        Month nextMonth = month.plus(1);
+
+        LocalDate nextDate = LocalDate.of(year.getValue(), nextMonth.getValue(), day);
+        System.out.println("Next date: "+nextDate);
+
+
+        System.out.println("It will be: " + nextDate.getDayOfWeek());
+
+
+
 
     }
 }
